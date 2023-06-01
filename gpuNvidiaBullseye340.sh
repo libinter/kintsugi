@@ -2,10 +2,12 @@
 
 mkdir -p nvidia-340
 
+sudo apt install linux-headers-$(uname -r)
+
 echo "From: https://download.nvidia.com/XFree86/Linux-x86_64/340.108/README/installdriver.html"
 
 curl -L "https://download.nvidia.com/XFree86/Linux-x86_64/340.108/NVIDIA-Linux-x86_64-340.108.run" -o "nvidia-340/driver.run"
-
+# sudo update-initramfs -u
 # echo "------------- DOWNLOADING PACKAGES -------------"
 
 # base_urls=(
