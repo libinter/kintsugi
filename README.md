@@ -22,12 +22,25 @@ Configure script:
 sh -c "$(wget https://raw.githubusercontent.com/libinter/kintsugi/main/setupInitialOS.sh -O -)"
 ```
 
+Generate a legacy key:
+
+```
+ssh-keygen -t rsa -b 4096 -C "$email"
+```
+
 Clone repository:
 
 ```zsh
 git clone git@github.com:libinter/kintsugi.git && cd kintsugi
 sudo chmod +x *.sh && setupInitialOS.sh
 ```
+
+Hints:
+
+* set Setttings sleep timer to never (if art)
+* use Ctrl + Shift for the Terminal
+* in apps press F11 to fullscreen
+* configure more with GNOME Tweaks
 
 Adjust Chromium:
 
