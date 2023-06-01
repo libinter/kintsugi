@@ -12,7 +12,7 @@ sh -c "$(wget https://raw.githubusercontent.com/libinter/kintsugi/main/setupInit
 
 ```zsh
 git clone git@github.com:libinter/kintsugi.git && cd kintsugi
-sudo chmod +x setupInitialOS.sh && setupInitialOS.sh
+sudo chmod +x *.sh && setupInitialOS.sh
 ```
 
 ```zsh

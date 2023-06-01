@@ -18,6 +18,9 @@ yes | sudo apt install v4l-utils build-essential v4l2loopback-dkms
 echo "------------- FFMPEG -------------"
 yes | sudo apt install ffmpeg
 
+echo "------------- NVIDIA -------------"
+yes | sudo apt install nvidia-detect
+
 echo "------------- VLC -------------"
 yes | sudo apt install vlc vlc-plugin-* libavcodec-extra
 
