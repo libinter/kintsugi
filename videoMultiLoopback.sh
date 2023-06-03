@@ -41,11 +41,13 @@ process_pids=()
 inputs=""
 filter=""
 
+# CHMOD: https://stackoverflow.com/questions/68433415/using-v4l2loopback-virtual-cam-with-google-chrome-or-chromium-on-linux-while-hav
+
 for ((i=0; i<devices; i++)); do
 
 	sudo chmod 660 /dev/video$i
 	echo "✸ Configuring /dev/video$i"
-	inputs+=" -f v4l2 -i /dev/video$i"
+	inputs+=" -f v4l2 -thread_queue_size 32 -i /dev/video$i"
 	filter+="[$i:v]"
 	sleep 0.1
 done
@@ -56,7 +58,7 @@ v4l2-ctl --list-devices
 
 cpu_count=$(grep -c '^processor' /proc/cpuinfo) # get total CPU cores
 
-cmd="ffmpeg $inputs -filter_complex \"$filter\" -f v4l2 /dev/video100"
+cmd="ffmpeg $inputs -filter_complex \"$filter\" -f v4l2 -r 25 /dev/video100"
 # cmd="ffmpeg $inputs -filter_complex \"$filter\" -f v4l2 -threads $cpu_count /dev/video100"
 
 # ffmpeg  -f v4l2 -i /dev/video0 -f v4l2 -i /dev/video1 -filter_complex "[0:v][1:v]hstack=inputs=2,format=yuv420p" -f v4l2 -threads 4 -buffersize 8192 /dev/video100

@@ -10,7 +10,7 @@ sudo dd if=$installer.iso of=/dev/disk$number bs=1m
 
 Default user after install is without sudo:
 
-```
+```zsh
 su -
 usermod -aG sudo $user
 reboot now
@@ -18,14 +18,21 @@ reboot now
 
 Configure script:
 
-```
+```zsh
 sh -c "$(wget https://raw.githubusercontent.com/libinter/kintsugi/main/setupInitialOS.sh -O -)"
 ```
 
 Generate a legacy key:
 
-```
+```zsh
 ssh-keygen -t rsa -b 4096 -C "$email"
+```
+
+Automatic DISPLAY:
+
+```zsh
+sudo nano ~/.zshrc
+# append [[ -n $SSH_CONNECTION ]] && export DISPLAY=:0
 ```
 
 Clone repository:
@@ -35,33 +42,34 @@ git clone git@github.com:libinter/kintsugi.git && cd kintsugi
 sudo chmod +x *.sh && setupInitialOS.sh
 ```
 
+Adjust Chromium:
+
+```zsh
+chromium --new-tab chrome://gpu --new-tab chrome://flags
+```
+
+Configure Samba:
+
+```zsh
+sudo nano /etc/samba/smb.conf
+sudo smbpasswd -a $user
+sudo /etc/init.d/smbd restart
+```
+
+Enable non-free drivers:
+
+```zsh
+sudo nano /etc/apt/sources.list
+# append: contrib non-free
+sudo apt update
+```
+
 Hints:
 
 * set Setttings sleep timer to never (if art)
 * use Ctrl + Shift for the Terminal
 * in apps press F11 to fullscreen
 * configure more with GNOME Tweaks
-
-Adjust Chromium:
-
-```zsh
-chrome://gpu
-chrome://flags
-```
-
-Configure Samba:
-
-```
-sudo nano /etc/samba/smb.conf
-
-[$name]
-path = $folder
-read only = no
-guest ok = no
-
-sudo smbpasswd -a $user
-sudo /etc/init.d/smbd restart
-```
 
 Notes:
 
