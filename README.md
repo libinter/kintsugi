@@ -40,6 +40,7 @@ Hints:
 * set Setttings sleep timer to never (if art)
 * use Ctrl + Shift for the Terminal
 * in apps press F11 to fullscreen
+* keyboard layout to Macintosh (if mac user)
 * configure more with GNOME Tweaks
 
 Adjust Chromium:
